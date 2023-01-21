@@ -12,6 +12,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\Modules\Wallets\Budgethold.Modules.Wallets.Api\Budgethold.Modules.Wallets.Api.csproj" />
+      <ProjectReference Include="..\..\Shared\Budgethold.Shared.Infrastructure\Budgethold.Shared.Infrastructure.csproj" />
       <ProjectReference Include="..\Budgethold.Modules.Wallets.Api\Budgethold.Modules.Wallets.Api.csproj" />
     </ItemGroup>
 

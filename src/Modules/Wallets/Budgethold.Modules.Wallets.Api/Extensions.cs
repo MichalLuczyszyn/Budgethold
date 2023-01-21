@@ -11,6 +11,7 @@ internal static class Extensions
     public static IServiceCollection AddWallets(this IServiceCollection serviceCollection)
     {
         serviceCollection.AddCore();
+        
         return serviceCollection;
     }
 }

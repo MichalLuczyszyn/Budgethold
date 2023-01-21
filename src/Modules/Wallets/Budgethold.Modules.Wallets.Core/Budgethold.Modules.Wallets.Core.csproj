@@ -7,6 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\Shared\Budgethold.Shared.Abstractions\Budgethold.Shared.Abstractions.csproj" />
+      <ProjectReference Include="..\..\..\Shared\Budgethold.Shared.Infrastructure\Budgethold.Shared.Infrastructure.csproj" />
       <ProjectReference Include="..\Budgethold.Shared.Infrastructure\Budgethold.Shared.Infrastructure.csproj" />
     </ItemGroup>
 

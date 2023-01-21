@@ -1,5 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
+using Budgethold.Shared.Abstractions;
 using Budgethold.Shared.Infrastructure.Api;
+using Budgethold.Shared.Infrastructure.Exceptions;
+using Budgethold.Shared.Infrastructure.Time;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,14 +18,17 @@ internal static class Extensions
         {
             manager.FeatureProviders.Add(new InternalControllerFeatureProvider());
         });
+        serviceCollection.AddErrorHandling();
         serviceCollection.AddEndpointsApiExplorer();
         serviceCollection.AddSwaggerGen();
+        serviceCollection.AddSingleton<IClock, UtcClock>();
 
         return serviceCollection;
     }
 
     public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
     {
+        app.UseErrorHandling();
         app.UseSwagger();
         app.UseSwaggerUI();
         

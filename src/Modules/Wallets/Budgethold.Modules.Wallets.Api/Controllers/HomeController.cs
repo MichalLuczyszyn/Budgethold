@@ -2,8 +2,7 @@
 
 namespace Budgethold.Modules.Wallets.Api.Controllers;
 
-[Route("wallets-module")]
-internal class HomeController : ControllerBase
+internal class HomeController : BaseController
 {
     [HttpGet] 
     public ActionResult<string> Get() => "Wallets API";
