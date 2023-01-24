@@ -7,10 +7,8 @@ internal class ExceptionCompositionRoot : IExceptionCompositionRoot
 {
     private readonly IServiceProvider _serviceProvider;
 
-    public ExceptionCompositionRoot(IServiceProvider serviceProvider)
-    {
-        _serviceProvider = serviceProvider;
-    }
+    public ExceptionCompositionRoot(IServiceProvider serviceProvider) => _serviceProvider = serviceProvider;
+
     public ExceptionResponse Map(Exception exception)
     {
         using var scope = _serviceProvider.CreateScope();

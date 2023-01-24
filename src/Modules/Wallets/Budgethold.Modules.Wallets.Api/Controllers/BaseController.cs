@@ -3,10 +3,9 @@
 namespace Budgethold.Modules.Wallets.Api.Controllers;
 
 [ApiController]
-[Route(BasePath + "/[controller]")]
+[Route(WalletsModule.BasePath + "/[controller]")]
 internal class BaseController : ControllerBase
 {
-    private const string BasePath = "wallets-module";
 
     protected ActionResult<T> OkOrNotFound<T>(T model)
     {

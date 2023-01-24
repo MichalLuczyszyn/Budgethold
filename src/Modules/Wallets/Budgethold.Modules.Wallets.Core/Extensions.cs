@@ -5,10 +5,16 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Budgethold.Modules.Wallets.Core;
 
+using DAL;
+using Budgethold.Modules.Wallets.Core.DAL.Repositories;
+using Repositories;
+using Shared.Infrastructure.Postgres;
+
 internal static class Extensions
 {
     public static IServiceCollection AddCore(this IServiceCollection serviceCollection)
-    {
-        return serviceCollection;
-    }
+        =>
+            serviceCollection.AddPostgres<WalletsDbContext>()
+                .AddScoped<IWalletRepository, WalletRepository>()
+                .AddScoped<ITransactionRepository, TransactionRepository>();
 }
