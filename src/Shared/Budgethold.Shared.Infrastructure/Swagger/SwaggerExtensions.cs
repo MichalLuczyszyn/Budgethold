@@ -9,17 +9,13 @@ public static class SwaggerExtensions
     {
         services.AddSwaggerGen(swagger =>
         {
-            //This is to generate the Default UI of Swagger Documentation    
+            swagger.CustomSchemaIds(x => x.FullName);
             swagger.SwaggerDoc("v1", new OpenApiInfo
             {
                 Title = "Budgethold API",
-                Version = "v1",
-                Contact = new OpenApiContact()
-                {
-                    Name = "Budgethold"
-                }
+                Version = "v1"
             });
-            // To Enable authorization using Swagger (JWT)    
+            
             swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
             {
                 Name = "Authorization",
@@ -30,6 +26,7 @@ public static class SwaggerExtensions
                 Description =
                     "Enter 'Bearer' [space] and then your valid token in the text input below.\r\n\r\nExample: \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\""
             });
+            
             swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
                 {

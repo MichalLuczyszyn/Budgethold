@@ -23,7 +23,11 @@ foreach (var module in _modules)
     module.Use(app);
 }
 
-app.MapControllers();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+    endpoints.MapModuleInfo();
+});
 
 _assemblies.Clear();
 _modules.Clear();

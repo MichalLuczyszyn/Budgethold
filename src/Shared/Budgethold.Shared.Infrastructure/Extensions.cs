@@ -18,11 +18,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
+using Modules;
 using Services;
 using Swagger;
 
 internal static class Extensions
 {
+    private const string CorsPolicy = "cors";
     public static IServiceCollection AddInfrastructure(this IServiceCollection serviceCollection, IList<Assembly> assemblies, IList<IModule> modules)
     {
         var disabledModules = new List<string>();
@@ -60,11 +62,23 @@ internal static class Extensions
         });
 
         serviceCollection.AddSwaggerConfig();
+
+        serviceCollection.AddCors(cors =>
+        {
+            cors.AddPolicy(CorsPolicy, x =>
+            {
+                x.WithOrigins("*")
+                    .WithMethods("POST", "PUT", "DELETE")
+                    .WithHeaders("Content-Type", "Authorization");
+            });
+            
+        });
         
         serviceCollection.AddSingleton<IContextFactory, ContextFactory>();
         serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         serviceCollection.AddTransient(sp => sp.GetRequiredService<IContextFactory>().Create());
         serviceCollection.AddAuth(modules);
+        serviceCollection.AddModuleInfo(modules);
         serviceCollection.AddHostedService<AppInitializer>();
         serviceCollection.AddErrorHandling();
         serviceCollection.AddEndpointsApiExplorer();
@@ -75,14 +89,14 @@ internal static class Extensions
 
     public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
     {
+        app.UseCors(CorsPolicy);
         app.UseErrorHandling();
         app.UseSwagger();
-        app.UseSwaggerUI();
         app.UseReDoc(reDoc =>
         {
             reDoc.RoutePrefix = "docs";
             reDoc.SpecUrl("/swagger/v1/swagger.json");
-            reDoc.DocumentTitle = "Confab API";
+            reDoc.DocumentTitle = "Budgethold API";
         });
         
         app.UseHttpsRedirection();
