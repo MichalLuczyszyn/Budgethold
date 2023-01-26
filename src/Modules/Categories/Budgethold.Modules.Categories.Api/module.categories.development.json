@@ -1,0 +1,8 @@
+﻿{
+  "categories": {
+    "module": {
+      "name" : "Categories",
+      "enabled": true
+    }
+  }
+}

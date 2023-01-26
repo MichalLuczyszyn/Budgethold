@@ -92,12 +92,13 @@ internal static class Extensions
         app.UseCors(CorsPolicy);
         app.UseErrorHandling();
         app.UseSwagger();
-        app.UseReDoc(reDoc =>
-        {
-            reDoc.RoutePrefix = "docs";
-            reDoc.SpecUrl("/swagger/v1/swagger.json");
-            reDoc.DocumentTitle = "Budgethold API";
-        });
+        app.UseSwaggerUI();
+        // app.UseReDoc(reDoc =>
+        // {
+        //     reDoc.RoutePrefix = "docs";
+        //     reDoc.SpecUrl("/swagger/v1/swagger.json");
+        //     reDoc.DocumentTitle = "Budgethold API";
+        // });
         
         app.UseHttpsRedirection();
         app.UseAuthentication();

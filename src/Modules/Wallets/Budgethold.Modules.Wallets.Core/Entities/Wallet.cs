@@ -16,5 +16,7 @@ public class Wallet
 
     public string Name { get; private set; }
 
-    public ICollection<Transaction> Transactions { get; private set; }
+    public ICollection<Transaction> Transactions { get; private set; } = new List<Transaction>();
+
+    internal void Update(string name) => Name = name;
 }

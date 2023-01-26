@@ -6,4 +6,20 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Shared\Budgethold.Shared.Abstractions\Budgethold.Shared.Abstractions.csproj" />
+      <ProjectReference Include="..\Budgethold.Modules.Categories.Core\Budgethold.Modules.Categories.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="module.categories.json" />
+      <Content Include="module.categories.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="module.categories.development.json" />
+      <Content Include="module.categories.development.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
