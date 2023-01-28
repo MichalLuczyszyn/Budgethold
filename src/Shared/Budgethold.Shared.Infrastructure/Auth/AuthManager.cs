@@ -12,7 +12,7 @@ namespace Budgethold.Shared.Infrastructure.Auth
     using JsonWebToken = Abstractions.Auth.JsonWebToken;
     using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
-    public sealed class AuthManager : IAuthManager
+    public sealed class  AuthManager : IAuthManager
     {
         private static readonly Dictionary<string, IEnumerable<string>> EmptyClaims = new();
         private readonly AuthOptions _options;

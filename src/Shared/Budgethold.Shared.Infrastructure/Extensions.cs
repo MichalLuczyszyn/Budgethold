@@ -14,11 +14,15 @@ using System.Reflection;
 using Abstractions.Modules;
 using Auth;
 using Contexts;
+using Events;
+using Messenger;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using Modules;
+using Postgres;
+using Serilog;
 using Services;
 using Swagger;
 
@@ -77,9 +81,13 @@ internal static class Extensions
         serviceCollection.AddSingleton<IContextFactory, ContextFactory>();
         serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         serviceCollection.AddTransient(sp => sp.GetRequiredService<IContextFactory>().Create());
+        serviceCollection.AddEvents(assemblies);
+        serviceCollection.AddModuleRequest(assemblies);
         serviceCollection.AddAuth(modules);
         serviceCollection.AddModuleInfo(modules);
         serviceCollection.AddHostedService<AppInitializer>();
+        serviceCollection.AddPostgres ();
+        serviceCollection.AddMessenger();
         serviceCollection.AddErrorHandling();
         serviceCollection.AddEndpointsApiExplorer();
         serviceCollection.AddSingleton<IClock, UtcClock>();
@@ -103,6 +111,7 @@ internal static class Extensions
         app.UseHttpsRedirection();
         app.UseAuthentication();
         app.UseRouting();
+        app.UseSerilogRequestLogging();
         app.UseAuthorization();
 
         return app;

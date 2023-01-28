@@ -14,4 +14,8 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\Shared\Budgethold.Shared.Infrastructure\Budgethold.Shared.Infrastructure.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Events\External\Handlers" />
+    </ItemGroup>
 </Project>

@@ -13,6 +13,10 @@
         <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="6.15.1" />
         <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.15.1" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.1" />
+        <PackageReference Include="Scrutor" Version="4.2.0" />
+        <PackageReference Include="Serilog" Version="3.0.0-dev-01801" />
+        <PackageReference Include="Serilog.AspNetCore" Version="6.1.1-dev-00293" />
+        <PackageReference Include="Serilog.Sinks.Console" Version="4.1.1-dev-00901" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
         <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" Version="6.5.0" />
         <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
@@ -23,6 +27,10 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Budgethold.Shared.Abstractions\Budgethold.Shared.Abstractions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Loggers" />
     </ItemGroup>
 
 </Project>
