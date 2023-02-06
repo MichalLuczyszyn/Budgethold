@@ -12,21 +12,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Shared\Budgethold.Shared.Infrastructure\Budgethold.Shared.Infrastructure.csproj" />
-      <ProjectReference Include="..\Budgethold.Modules.Wallets.Application\Budgethold.Modules.Wallets.Application.csproj" />
       <ProjectReference Include="..\Budgethold.Modules.Wallets.Domain\Budgethold.Modules.Wallets.Domain.csproj" />
-      <ProjectReference Include="..\Budgethold.Modules.Wallets.Infrastructure\Budgethold.Modules.Wallets.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="module.wallets.development.json" />
-      <Content Include="module.wallets.development.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-      <None Remove="module.wallets.json" />
-      <Content Include="module.wallets.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
+      <Folder Include="DAL\Transactions\Queries" />
+      <Folder Include="DAL\Wallets\Queries" />
     </ItemGroup>
-    
 
 </Project>
