@@ -1,14 +1,16 @@
 ﻿namespace Budgethold.Modules.Wallets.Domain.Wallets.Repositories;
 
 using Budgethold.Modules.Wallets.Domain.Wallets.Entities;
+using Shared.Abstractions.Kernel.Types;
 
-public interface IWalletRepository
+internal interface IWalletRepository
 {
-    Task<Wallet> GetAsync(Guid id);
+    Task<bool> ExistAsync(string name, CancellationToken cancellationToken);
+    Task<Wallet?> GetAsync(Guid id, CancellationToken cancellationToken);
 
-    Task AddAsync(Wallet wallet);
+    Task AddAsync(Wallet wallet, CancellationToken cancellationToken);
 
-    Task UpdateAsync(Wallet wallet);
+    Task CommitAsync(CancellationToken cancellationToken);
+    Task SaveChangeAsync(Wallet wallet, CancellationToken cancellationToken);
 
-    Task DeleteAsync(Wallet wallet);
 }

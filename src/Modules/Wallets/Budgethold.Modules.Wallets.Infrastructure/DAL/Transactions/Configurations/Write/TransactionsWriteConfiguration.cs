@@ -4,7 +4,7 @@ using Budgethold.Modules.Wallets.Domain.Transactions.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-public class TransactionsWriteConfiguration : IEntityTypeConfiguration<Transaction>
+internal class TransactionsWriteConfiguration : IEntityTypeConfiguration<Transaction>
 {
     public void Configure(EntityTypeBuilder<Transaction> builder)
     {
@@ -13,6 +13,6 @@ public class TransactionsWriteConfiguration : IEntityTypeConfiguration<Transacti
 
         builder.Property(x => x.Name).HasMaxLength(100);
         
-        builder.ToTable(Constants.Transactions);
+        builder.ToTable(Constants.transactions);
     }
 }

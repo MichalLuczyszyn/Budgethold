@@ -15,8 +15,4 @@
     <ItemGroup>
       <ProjectReference Include="..\..\..\Shared\Budgethold.Shared.Infrastructure\Budgethold.Shared.Infrastructure.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Entities" />
-    </ItemGroup>
 </Project>

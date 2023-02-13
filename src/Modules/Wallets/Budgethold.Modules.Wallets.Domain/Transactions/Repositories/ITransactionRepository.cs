@@ -2,7 +2,7 @@
 
 using Budgethold.Modules.Wallets.Domain.Transactions.Entities;
 
-public interface ITransactionRepository
+internal interface ITransactionRepository
 {
     Task<Transaction?> GetAsync(Guid id);
 

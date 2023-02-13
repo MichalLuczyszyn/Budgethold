@@ -11,7 +11,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="RepeatableTransactions\Entities" />
       <Folder Include="RepeatableTransactions\Events" />
       <Folder Include="RepeatableTransactions\Exceptions" />
       <Folder Include="RepeatableTransactions\Repositories" />
@@ -21,10 +20,13 @@
       <Folder Include="Transactions\Exceptions" />
       <Folder Include="Transactions\Types" />
       <Folder Include="Transactions\ValueObjects" />
-      <Folder Include="Wallets\Events" />
       <Folder Include="Wallets\Exceptions" />
       <Folder Include="Wallets\Types" />
       <Folder Include="Wallets\ValueObjects" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Shared\Budgethold.Shared.Abstractions\Budgethold.Shared.Abstractions.csproj" />
     </ItemGroup>
 
 </Project>

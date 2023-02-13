@@ -4,7 +4,7 @@ using Budgethold.Modules.Wallets.Domain.Transactions.Entities;
 using Budgethold.Modules.Wallets.Domain.Wallets.Entities;
 using Microsoft.EntityFrameworkCore;
 
-public class WalletsWriteDbContext : DbContext
+internal class WalletsWriteDbContext : DbContext
 {
     public WalletsWriteDbContext(DbContextOptions<WalletsWriteDbContext> options)
         : base(options)
@@ -17,7 +17,7 @@ public class WalletsWriteDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasDefaultSchema("wallets");
+        modelBuilder.HasDefaultSchema(Constants.wallets);
         modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly);
     }
 }

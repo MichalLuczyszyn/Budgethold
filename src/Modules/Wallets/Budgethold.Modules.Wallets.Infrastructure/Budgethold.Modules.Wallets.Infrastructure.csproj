@@ -16,6 +16,10 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="DAL\RepeatableTransactions\Configurations\Read\Model" />
+      <Folder Include="DAL\RepeatableTransactions\Configurations\Write" />
+      <Folder Include="DAL\RepeatableTransactions\Queries" />
+      <Folder Include="DAL\RepeatableTransactions\Repositories" />
       <Folder Include="DAL\Transactions\Queries" />
       <Folder Include="DAL\Wallets\Queries" />
     </ItemGroup>

@@ -4,6 +4,7 @@ using Budgethold.Modules.Wallets.Domain.Wallets.Entities;
 using Budgethold.Modules.Wallets.Domain.Wallets.Repositories;
 using Context;
 using Microsoft.EntityFrameworkCore;
+using Shared.Abstractions.Kernel.Types;
 
 internal class WalletRepository : IWalletRepository
 {
@@ -16,23 +17,24 @@ internal class WalletRepository : IWalletRepository
         _wallets = _dbContext.Wallets;
     }
 
-    public async Task<Wallet> GetAsync(Guid id) => await _wallets.Include(x => x.Transactions).FirstOrDefaultAsync(x => x.Id == id);
 
-    public async Task AddAsync(Wallet wallet)
+    public async Task<bool> ExistAsync(string name, CancellationToken cancellationToken) =>
+        await _wallets.AnyAsync(x => x.Name.ToLowerInvariant() == name.ToLowerInvariant(), cancellationToken: cancellationToken);
+
+    public async Task<Wallet?> GetAsync(Guid id, CancellationToken cancellationToken) => await _wallets.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
+
+    public async Task AddAsync(Wallet wallet, CancellationToken cancellationToken)
     {
         _wallets.Add(wallet);
-        await _dbContext.SaveChangesAsync();
+        await _dbContext.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task UpdateAsync(Wallet wallet)
+    public async Task CommitAsync(CancellationToken cancellationToken) => await _dbContext.SaveChangesAsync(cancellationToken);
+
+    public async Task SaveChangeAsync(Wallet wallet, CancellationToken cancellationToken)
     {
         _wallets.Update(wallet);
-        await _dbContext.SaveChangesAsync();
-    }
 
-    public async Task DeleteAsync(Wallet wallet)
-    {
-        _wallets.Remove(wallet);
-        await _dbContext.SaveChangesAsync();
+        await _dbContext.SaveChangesAsync(cancellationToken);
     }
 }

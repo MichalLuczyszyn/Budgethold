@@ -6,5 +6,5 @@ using Model;
 
 internal class TransactionsReadConfiguration : IEntityTypeConfiguration<TransactionReadModel>
 {
-    public void Configure(EntityTypeBuilder<TransactionReadModel> builder) => builder.ToTable(Constants.Transactions);
+    public void Configure(EntityTypeBuilder<TransactionReadModel> builder) => builder.ToTable(Constants.transactions);
 }
