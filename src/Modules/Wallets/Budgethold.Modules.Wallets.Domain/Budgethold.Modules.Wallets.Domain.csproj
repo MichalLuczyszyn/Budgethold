@@ -20,9 +20,7 @@
       <Folder Include="Transactions\Exceptions" />
       <Folder Include="Transactions\Types" />
       <Folder Include="Transactions\ValueObjects" />
-      <Folder Include="Wallets\Exceptions" />
       <Folder Include="Wallets\Types" />
-      <Folder Include="Wallets\ValueObjects" />
     </ItemGroup>
 
     <ItemGroup>

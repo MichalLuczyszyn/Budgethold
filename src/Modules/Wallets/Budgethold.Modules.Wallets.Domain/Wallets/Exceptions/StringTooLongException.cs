@@ -1,6 +1,6 @@
-﻿namespace Budgethold.Shared.Abstractions.Kernel.ValueObjects.Strings.Exceptions;
+﻿namespace Budgethold.Modules.Wallets.Domain.Wallets.Exceptions;
 
-using Abstractions.Exceptions;
+using Budgethold.Shared.Abstractions.Exceptions;
 
 public class StringTooLongException : BudgetholdException
 {

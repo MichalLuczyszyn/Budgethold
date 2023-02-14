@@ -1,14 +1,15 @@
-﻿namespace Budgethold.Shared.Abstractions.Kernel.ValueObjects.Strings;
+﻿namespace Budgethold.Modules.Wallets.Domain.Wallets.ValueObjects;
 
 using System.Text.RegularExpressions;
 using Exceptions;
+using Shared.Abstractions.Kernel.ValueObjects;
 
-public partial class BasicString : ValueObject
+public partial class WalletName : ValueObject
 {
     private static readonly Regex Regex = MyRegex();
     public string Value { get; }
     
-    public BasicString(string value)
+    public WalletName(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
             throw new StringCannotBeNullOrEmptyException();
@@ -23,9 +24,10 @@ public partial class BasicString : ValueObject
         Value = value;
     }
 
-    public static implicit operator string(BasicString value) => value.Value;
-    public static implicit operator BasicString(string value) => new BasicString(value);
+    public static implicit operator string(WalletName value) => value.Value;
+    public static implicit operator WalletName(string value) => new WalletName(value);
     public override string ToString() => Value;
+    public string ToLowerInvariant() => Value.ToLowerInvariant();
     
     [GeneratedRegex("^[a-zA-Zęóąśłżźćń]+$", RegexOptions.Compiled)]
     private static partial Regex MyRegex();

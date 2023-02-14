@@ -17,7 +17,6 @@ internal class WalletRepository : IWalletRepository
         _wallets = _dbContext.Wallets;
     }
 
-
     public async Task<bool> ExistAsync(string name, CancellationToken cancellationToken) =>
         await _wallets.AnyAsync(x => x.Name.ToLowerInvariant() == name.ToLowerInvariant(), cancellationToken: cancellationToken);
 
