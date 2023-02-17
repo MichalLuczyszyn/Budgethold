@@ -85,7 +85,7 @@ namespace Budgethold.Modules.Users.Core.Services
                 Email = email,
                 Password = password,
                 Role = dto.Role?.ToLowerInvariant() ?? "user",
-                CreatedAt = _clock.CurrentDate(),
+                CreatedAt = _clock.CurrentDateTime(),
                 IsActive = true,
                 Claims = dto.Claims ?? new Dictionary<string, IEnumerable<string>>()
             };

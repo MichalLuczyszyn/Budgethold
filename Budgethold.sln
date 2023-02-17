@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{C70E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{9E66FB6E-B84A-4A28-8910-EC2F9DE88D12}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FAFF4CA2-5D75-4E08-BB95-6D8485D8E7D6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FAFF4CA2-5D75-4E08-BB95-6D8485D8E7D6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wallets", "Wallets", "{9FC2DABE-F025-4CD5-874C-2120AA1FB477}"
 EndProject
@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Bootstrapper", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Modules.Categories.Api", "src\Modules\Categories\Budgethold.Modules.Categories.Api\Budgethold.Modules.Categories.Api.csproj", "{A0DB0224-9100-4C7C-90AD-661CA9A4DE86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Modules.Categories.Core", "src\Modules\Categories\Budgethold.Modules.Categories.Core\Budgethold.Modules.Categories.Core.csproj", "{5E4E1FCD-350A-4EC5-A02A-0C9B28080304}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Modules.Categories.Domain", "src\Modules\Categories\Budgethold.Modules.Categories.Domain\Budgethold.Modules.Categories.Domain.csproj", "{5E4E1FCD-350A-4EC5-A02A-0C9B28080304}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Modules.Wallets.Api", "src\Modules\Wallets\Budgethold.Modules.Wallets.Api\Budgethold.Modules.Wallets.Api.csproj", "{94E8DF54-849F-416D-8B7C-32422A8CE80A}"
 EndProject
@@ -41,6 +41,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Modules.Users.Application", "src\Modules\Users\Budgethold.Modules.Users.Application\Budgethold.Modules.Users.Application.csproj", "{60F998B4-822E-4B1D-B25F-6F4ADECDF5CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Modules.Users.Infrastructure", "src\Modules\Users\Budgethold.Modules.Users.Infrastructure\Budgethold.Modules.Users.Infrastructure.csproj", "{A56E5D84-AD97-4F9C-A82F-7B39B5BDC505}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3F4965B2-6B89-4311-9C61-D1C776658DCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Modules.Wallets.Unit.Tests", "src\Modules\Wallets\Tests\Budgethold.Modules.Wallets.Unit.Tests\Budgethold.Modules.Wallets.Unit.Tests.csproj", "{5713B2D2-EC84-46FE-8BD4-75438B90B27B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Shared.Tests", "src\Shared\Tests\Budgethold.Shared.Tests\Budgethold.Shared.Tests.csproj", "{A0B1A67B-2973-4CEE-9A96-7C8642BA969A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Modules.Wallets.Integration.Tests", "src\Modules\Wallets\Tests\Budgethold.Modules.Wallets.Integration.Tests\Budgethold.Modules.Wallets.Integration.Tests.csproj", "{7F8774DC-E765-492E-BEB0-BFE986A263E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Modules.Categories.Application", "src\Modules\Categories\Budgethold.Modules.Categories.Application\Budgethold.Modules.Categories.Application.csproj", "{F30163A2-5730-403A-94EC-B6067B49B750}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Modules.Categories.Infrastructure", "src\Modules\Categories\Budgethold.Modules.Categories.Infrastructure\Budgethold.Modules.Categories.Infrastructure.csproj", "{59779374-F880-461B-8A59-3FBF924860E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +79,13 @@ Global
 		{CFA13DFE-7D67-41DC-BFE6-383F01E79AE1} = {9FC2DABE-F025-4CD5-874C-2120AA1FB477}
 		{60F998B4-822E-4B1D-B25F-6F4ADECDF5CC} = {886F7767-FDED-4AFE-A502-5C34FF9F00FE}
 		{A56E5D84-AD97-4F9C-A82F-7B39B5BDC505} = {886F7767-FDED-4AFE-A502-5C34FF9F00FE}
+		{3F4965B2-6B89-4311-9C61-D1C776658DCD} = {9FC2DABE-F025-4CD5-874C-2120AA1FB477}
+		{5713B2D2-EC84-46FE-8BD4-75438B90B27B} = {3F4965B2-6B89-4311-9C61-D1C776658DCD}
+		{FAFF4CA2-5D75-4E08-BB95-6D8485D8E7D6} = {9E66FB6E-B84A-4A28-8910-EC2F9DE88D12}
+		{A0B1A67B-2973-4CEE-9A96-7C8642BA969A} = {FAFF4CA2-5D75-4E08-BB95-6D8485D8E7D6}
+		{7F8774DC-E765-492E-BEB0-BFE986A263E7} = {3F4965B2-6B89-4311-9C61-D1C776658DCD}
+		{F30163A2-5730-403A-94EC-B6067B49B750} = {86E49981-0388-4834-9573-4A6CA32C3756}
+		{59779374-F880-461B-8A59-3FBF924860E3} = {86E49981-0388-4834-9573-4A6CA32C3756}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D9610832-C5AE-4921-AE65-6B80E019942C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -121,5 +140,25 @@ Global
 		{A56E5D84-AD97-4F9C-A82F-7B39B5BDC505}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A56E5D84-AD97-4F9C-A82F-7B39B5BDC505}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A56E5D84-AD97-4F9C-A82F-7B39B5BDC505}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5713B2D2-EC84-46FE-8BD4-75438B90B27B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5713B2D2-EC84-46FE-8BD4-75438B90B27B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5713B2D2-EC84-46FE-8BD4-75438B90B27B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5713B2D2-EC84-46FE-8BD4-75438B90B27B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0B1A67B-2973-4CEE-9A96-7C8642BA969A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0B1A67B-2973-4CEE-9A96-7C8642BA969A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0B1A67B-2973-4CEE-9A96-7C8642BA969A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0B1A67B-2973-4CEE-9A96-7C8642BA969A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F8774DC-E765-492E-BEB0-BFE986A263E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F8774DC-E765-492E-BEB0-BFE986A263E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F8774DC-E765-492E-BEB0-BFE986A263E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F8774DC-E765-492E-BEB0-BFE986A263E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F30163A2-5730-403A-94EC-B6067B49B750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F30163A2-5730-403A-94EC-B6067B49B750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F30163A2-5730-403A-94EC-B6067B49B750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F30163A2-5730-403A-94EC-B6067B49B750}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59779374-F880-461B-8A59-3FBF924860E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59779374-F880-461B-8A59-3FBF924860E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59779374-F880-461B-8A59-3FBF924860E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59779374-F880-461B-8A59-3FBF924860E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

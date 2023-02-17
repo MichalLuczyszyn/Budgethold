@@ -12,10 +12,10 @@ public partial class WalletName : ValueObject
     public WalletName(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
-            throw new StringCannotBeNullOrEmptyException();
+            throw new WalletNameCannotBeNullOrEmptyException();
 
         if (value.Length > 100)
-            throw new StringTooLongException();
+            throw new WalletNameTooLongException();
 
         value = value.ToLowerInvariant();
         if (!Regex.IsMatch(value))

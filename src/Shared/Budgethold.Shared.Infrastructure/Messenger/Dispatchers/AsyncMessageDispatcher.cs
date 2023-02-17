@@ -8,5 +8,5 @@ internal sealed class AsyncMessageDispatcher : IAsyncMessageDispatcher
 
     public AsyncMessageDispatcher(IMessageChannel messageChannel) => _messageChannel = messageChannel;
 
-    public async Task PublishAsync<TMessage>(TMessage message) where TMessage : class, IMessage => await _messageChannel.Writer.WriteAsync(message);
+    public async Task PublishAsync<TMessage>(TMessage message, CancellationToken cancellationToken) where TMessage : class, IMessage => await _messageChannel.Writer.WriteAsync(message, cancellationToken);
 }

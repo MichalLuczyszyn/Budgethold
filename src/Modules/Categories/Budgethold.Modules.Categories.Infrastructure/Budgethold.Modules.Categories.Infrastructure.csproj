@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Shared\Budgethold.Shared.Abstractions\Budgethold.Shared.Abstractions.csproj" />
+      <ProjectReference Include="..\..\..\Shared\Budgethold.Shared.Infrastructure\Budgethold.Shared.Infrastructure.csproj" />
+      <ProjectReference Include="..\Budgethold.Modules.Categories.Domain\Budgethold.Modules.Categories.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

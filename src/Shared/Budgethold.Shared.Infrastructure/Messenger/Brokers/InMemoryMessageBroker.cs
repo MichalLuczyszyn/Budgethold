@@ -17,7 +17,7 @@ internal class InMemoryMessageBroker : IMessageBroker
         _messengerOptions = messengerOptions;
     }
 
-    public async Task PublishAsync(params IMessage[] messages)
+    public async Task PublishAsync(IEnumerable<IMessage> messages, CancellationToken cancellationToken)
     {
         if (messages is null) return;
 
@@ -30,7 +30,7 @@ internal class InMemoryMessageBroker : IMessageBroker
         {
             if (_messengerOptions.UseBackgroundDispatcher)
             {
-                await _asyncMessageDispatcher.PublishAsync(message);
+                await _asyncMessageDispatcher.PublishAsync(message, cancellationToken);
                 continue;
             }
             

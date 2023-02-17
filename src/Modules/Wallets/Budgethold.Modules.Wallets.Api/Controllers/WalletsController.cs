@@ -2,7 +2,7 @@
 
 namespace Budgethold.Modules.Wallets.Api.Controllers;
 
-using Core.Dtos;
+using Core.Commands.Create;
 using Microsoft.AspNetCore.Authorization;
 
 [Authorize]
@@ -11,7 +11,7 @@ internal class WalletsController : BaseController
     [HttpGet("{id:guid}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
-    public async Task<ActionResult<WalletResponseDto>> GetWallet([FromRoute] Guid id)
+    public async Task<ActionResult> GetWallet([FromRoute] Guid id)
     {
         return NoContent();
     }
@@ -19,7 +19,7 @@ internal class WalletsController : BaseController
     [HttpPost]
     [ProducesResponseType(200)]
     [ProducesResponseType(404)]
-    public async Task<IActionResult> CreateWallet([FromBody] WalletDto walletDto)
+    public async Task<IActionResult> CreateWallet([FromBody] CreateWallet walletDto)
     {
         return NoContent();
     }
@@ -27,7 +27,7 @@ internal class WalletsController : BaseController
     [HttpPut("{id:guid}")]
     [ProducesResponseType(204)]
     [ProducesResponseType(404)]
-    public async Task<IActionResult> UpdateWallet([FromRoute] Guid id, [FromBody] WalletDto walletDto)
+    public async Task<IActionResult> UpdateWallet([FromRoute] Guid id)
     {
         return NoContent();
     }

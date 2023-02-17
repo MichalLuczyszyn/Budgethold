@@ -4,5 +4,6 @@ namespace Budgethold.Shared.Infrastructure.Time;
 
 public class UtcClock : IClock
 {
-    public DateTime CurrentDate() => DateTime.UtcNow;
+    public DateTime CurrentDateTime() => DateTime.UtcNow;
+    public DateTimeOffset CurrentDateTimeOffset() => DateTimeOffset.UtcNow;
 }

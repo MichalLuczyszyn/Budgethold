@@ -1,6 +1,5 @@
 ﻿namespace Budgethold.Modules.Wallets.Domain.Wallets.Events;
 
-using Shared.Abstractions.Kernel;
-using Shared.Abstractions.Kernel.Types;
+using Shared.Abstractions.Events;
 
-internal record WalletArchived(WalletId WalletId) : IDomainEvent;
+internal record WalletArchived(Guid WalletId) : IEvent;

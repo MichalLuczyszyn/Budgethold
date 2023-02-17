@@ -1,7 +1,10 @@
 namespace Budgethold.Modules.Categories.Api
 {
     using System.Collections.Generic;
+    using Application;
     using Core;
+    using Domain;
+    using Infrastructure;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.DependencyInjection;
     using Shared.Abstractions.Modules;
@@ -17,7 +20,7 @@ namespace Budgethold.Modules.Categories.Api
             "categories"
         };
 
-        public void Register(IServiceCollection services) => services.AddCore();
+        public void Register(IServiceCollection services) => services.AddDomain().AddInfrastructure().AddApplication();
 
         public void Use(IApplicationBuilder app)
         {

@@ -13,6 +13,7 @@ namespace Budgethold.Shared.Infrastructure;
 using System.Reflection;
 using Abstractions.Modules;
 using Auth;
+using Commands;
 using Contexts;
 using Events;
 using Messenger;
@@ -82,6 +83,7 @@ internal static class Extensions
         serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         serviceCollection.AddTransient(sp => sp.GetRequiredService<IContextFactory>().Create());
         serviceCollection.AddEvents(assemblies);
+        serviceCollection.AddCommands(assemblies);
         serviceCollection.AddModuleRequest(assemblies);
         serviceCollection.AddAuth(modules);
         serviceCollection.AddModuleInfo(modules);

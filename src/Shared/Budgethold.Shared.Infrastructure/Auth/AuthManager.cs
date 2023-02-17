@@ -42,7 +42,7 @@ namespace Budgethold.Shared.Infrastructure.Auth
                 throw new ArgumentException("User ID claim (subject) cannot be empty.", nameof(userId));
             }
 
-            var now = _clock.CurrentDate();
+            var now = _clock.CurrentDateTime();
             var jwtClaims = new List<Claim>
             {
                 new(JwtRegisteredClaimNames.Sub, userId),

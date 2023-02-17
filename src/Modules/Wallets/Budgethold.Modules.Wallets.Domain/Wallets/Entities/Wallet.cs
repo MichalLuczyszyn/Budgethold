@@ -21,6 +21,7 @@ internal class Wallet : AggregateRoot<WalletId>
 
     public WalletName Name { get; private set; }
     public WalletType WalletType { get; private set; }
+    public DateTimeOffset ArchivedAt { get; private set; }
 
     public ICollection<Transaction> Transactions { get; private set; } = new List<Transaction>();
     public ICollection<RepeatableTransaction> RepeatableTransactions { get; private set; } = new List<RepeatableTransaction>();
@@ -28,6 +29,7 @@ internal class Wallet : AggregateRoot<WalletId>
     public void Update(string name) => Name = name;
     public void ShareWallet() => WalletType = WalletType.Shared;
     public void PrivatizeWallet() => WalletType = WalletType.Private;
+    public void Archive(DateTimeOffset dateTimeOffset) => ArchivedAt = dateTimeOffset;
 
     public static Wallet Create(WalletName name, WalletType walletType)
     {

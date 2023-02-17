@@ -2,5 +2,5 @@
 
 public interface IMessageBroker
 {
-    Task PublishAsync(params IMessage[] messages);
+    Task PublishAsync(IEnumerable<IMessage> messages, CancellationToken cancellationToken);
 }
