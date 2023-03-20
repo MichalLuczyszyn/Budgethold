@@ -16,4 +16,8 @@
       <ProjectReference Include="..\..\..\Shared\Budgethold.Shared.Infrastructure\Budgethold.Shared.Infrastructure.csproj" />
       <ProjectReference Include="..\Budgethold.Modules.Wallets.Domain\Budgethold.Modules.Wallets.Domain.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Commands\Wallets" />
+    </ItemGroup>
 </Project>

@@ -1,5 +1,12 @@
 ﻿namespace Budgethold.Modules.Wallets.Domain.RepeatableTransactions.Entities;
 
+using Shared.Abstractions.Kernel.Types;
+using Shared.Abstractions.Kernel.ValueObjects.Currencies;
+using Shared.Abstractions.Kernel.ValueObjects.Texts;
+using Shared.Abstractions.Kernel.ValueObjects.Transactions;
+using Transactions.Entities;
+using Types;
+using ValueObjects;
 using Wallets.Entities;
 
 internal class RepeatableTransaction
@@ -9,34 +16,39 @@ internal class RepeatableTransaction
         Wallet = null!;
         Name = null!;
     }
-    private RepeatableTransaction(string name, string description, decimal amount, DateOnly date, Guid walletId, DateOnly startsAt, short interval)
+    private RepeatableTransaction(RepeatableTransactionName name, string description, Amount amount, DateOnly date, Guid walletId, DateOnly startsAt, short interval, DateTimeOffset currentDate)
     {
-        Id = Guid.NewGuid();
-        Name = name;
-        Description = description;
+        Id = RepeatableTransactionId.Create();
+        Name = ShortText.Create(name, nameof(Name));
+        Description = LongText.Create(description, nameof(Description));
         Amount = amount;
         Date = date;
         WalletId = walletId;
         Wallet = null!;
         StartsAt = startsAt;
         Interval = interval;
+        CreatedAt = currentDate;
     }
-    public Guid Id { get; }
+    public RepeatableTransactionId Id { get; }
 
-    public string Name { get; private set; }
+    public ShortText Name { get; private set; }
     
-    public string? Description { get; private set; }
-
-    public decimal Amount { get; private set; }
+    public LongText Description { get; private set; }
+    
+    public Amount Amount { get; private set; }
 
     public DateOnly Date { get; private set; }
 
-    public Guid WalletId { get; private set; }
+    public WalletId WalletId { get; private set; }
+    private DateTimeOffset CreatedAt { get; set; }
+    private DateTimeOffset? ArchivedAt { get; set; }
 
     public Wallet Wallet { get; private set; }
     public DateOnly StartsAt { get; private set; }
     public short Interval { get; private set; }
     
-    public static RepeatableTransaction Create(string name, string description, decimal amount, DateOnly date, Guid walletId, DateOnly startsAt, short interval) =>
-        new RepeatableTransaction(name, description, amount, date, walletId, startsAt, interval);
+    public ICollection<Transaction> Transactions { get; private set; } 
+
+    public static RepeatableTransaction Create(RepeatableTransactionName name, string description, Amount amount, DateOnly date, Guid walletId, DateOnly startsAt, short interval, DateTimeOffset currentDate) =>
+        new RepeatableTransaction(name, description, amount, date, walletId, startsAt, interval, currentDate);
 }

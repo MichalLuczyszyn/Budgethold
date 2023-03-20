@@ -6,5 +6,6 @@ public class WalletId : TypeId
     {
     }
 
+    public static WalletId Create() => new(Guid.NewGuid());
     public static implicit operator WalletId(Guid id) => new(id);
 }

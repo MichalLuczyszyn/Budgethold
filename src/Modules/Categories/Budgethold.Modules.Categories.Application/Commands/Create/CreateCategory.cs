@@ -2,4 +2,4 @@
 
 using Budgethold.Shared.Abstractions.Commands;
 
-public record CreateCategory(Guid WalletId, string Name) : ICommand<CategoryCreated>;
+public record CreateCategory(Guid WalletId, string Name) : ICommand<CategoryCreatedResponse>;

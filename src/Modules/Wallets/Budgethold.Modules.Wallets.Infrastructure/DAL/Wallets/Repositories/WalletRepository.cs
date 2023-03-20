@@ -9,18 +9,24 @@ using Shared.Abstractions.Kernel.Types;
 internal class WalletRepository : IWalletRepository
 {
     private readonly WalletsWriteDbContext _dbContext;
+    private readonly WalletsReadDbContext _walletsReadDbContext;
     private readonly DbSet<Wallet> _wallets;
 
-    public WalletRepository(WalletsWriteDbContext dbContext)
+    public WalletRepository(WalletsWriteDbContext dbContext, WalletsReadDbContext walletsReadDbContext)
     {
         _dbContext = dbContext;
+        _walletsReadDbContext = walletsReadDbContext;
         _wallets = _dbContext.Wallets;
     }
 
     public async Task<bool> ExistAsync(string name, CancellationToken cancellationToken) =>
-        await _wallets.AnyAsync(x => x.Name.ToLowerInvariant() == name.ToLowerInvariant(), cancellationToken: cancellationToken);
+        await _walletsReadDbContext.Wallets.AnyAsync(x => x.Name.ToLower() == name.ToLower(), cancellationToken: cancellationToken);
 
-    public async Task<Wallet?> GetAsync(Guid id, CancellationToken cancellationToken) => await _wallets.Where(x => x.Id == id).FirstOrDefaultAsync(cancellationToken);
+    public async Task<Wallet?> GetAsync(Guid id, CancellationToken cancellationToken) => await _wallets
+        .Include(x => x.Transactions)
+        .Include(x => x.RepeatableTransactions)
+        .Where(x => x.Id == id)
+        .FirstOrDefaultAsync(cancellationToken);
 
     public async Task AddAsync(Wallet wallet, CancellationToken cancellationToken)
     {

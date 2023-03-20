@@ -4,18 +4,18 @@ using Core.Entities;
 using Core.Repositories;
 using Shared.Abstractions.Commands;
 
-public class CreateCategoryHandler : ICommandHandler<CreateCategory, CategoryCreated>
+public class CreateCategoryHandler : ICommandHandler<CreateCategory, CategoryCreatedResponse>
 {
     private readonly ICategoryRepository _categoryRepository;
 
     public CreateCategoryHandler(ICategoryRepository categoryRepository) => _categoryRepository = categoryRepository;
 
-    public async Task<CategoryCreated> HandleAsync(CreateCategory command, CancellationToken cancellationToken = default)
+    public async Task<CategoryCreatedResponse> HandleAsync(CreateCategory command, CancellationToken cancellationToken = default)
     {
         var category = new Category(command.WalletId, command.Name);
 
         await _categoryRepository.AddAsync(category);
 
-        return new CategoryCreated(category.Id);
+        return new CategoryCreatedResponse(category.Id);
     }
 }

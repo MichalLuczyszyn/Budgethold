@@ -34,6 +34,6 @@ internal sealed class BackgroundDispatcher : BackgroundService
             }
         }
         
-        _logger.LogInformation("Finished running the bacground dispatcher");
+        _logger.LogInformation("Finished running the background dispatcher");
     }
 }

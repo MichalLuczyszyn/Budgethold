@@ -14,12 +14,7 @@
       <Folder Include="RepeatableTransactions\Events" />
       <Folder Include="RepeatableTransactions\Exceptions" />
       <Folder Include="RepeatableTransactions\Repositories" />
-      <Folder Include="RepeatableTransactions\Types" />
-      <Folder Include="RepeatableTransactions\ValueObjects" />
       <Folder Include="Transactions\Events" />
-      <Folder Include="Transactions\Exceptions" />
-      <Folder Include="Transactions\Types" />
-      <Folder Include="Transactions\ValueObjects" />
       <Folder Include="Wallets\Types" />
     </ItemGroup>
 

@@ -23,6 +23,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using Modules;
 using Postgres;
+using Queries;
 using Serilog;
 using Services;
 using Swagger;
@@ -84,6 +85,7 @@ internal static class Extensions
         serviceCollection.AddTransient(sp => sp.GetRequiredService<IContextFactory>().Create());
         serviceCollection.AddEvents(assemblies);
         serviceCollection.AddCommands(assemblies);
+        serviceCollection.AddQueries(assemblies);
         serviceCollection.AddModuleRequest(assemblies);
         serviceCollection.AddAuth(modules);
         serviceCollection.AddModuleInfo(modules);

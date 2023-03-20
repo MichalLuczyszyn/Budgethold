@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: InternalsVisibleTo("Budgethold.Modules.Wallets.Api")]
+[assembly: InternalsVisibleTo("Budgethold.Modules.Wallets.Integration.Tests")]
+[assembly: InternalsVisibleTo("Budgethold.Modules.Wallets.Unit.Tests")]
 
 namespace Budgethold.Modules.Wallets.Core;
 

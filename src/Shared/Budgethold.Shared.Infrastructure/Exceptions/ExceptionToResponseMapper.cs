@@ -12,13 +12,12 @@ internal class ExceptionToResponseMapper : IExceptionToResponseMapper
     public ExceptionResponse Map(Exception exception)
         => exception switch
         {
-            BudgetholdException => new ExceptionResponse(new ErrorsResponse(new Error(GetErrorCode(exception), exception.Message)), HttpStatusCode.BadRequest),
-            _ => new ExceptionResponse(new ErrorsResponse(new Error("error", "There was an error")), HttpStatusCode.InternalServerError)
+            BudgetholdException ex => new ExceptionResponse(new ErrorsResponse(HttpStatusCode.BadRequest,new Error(GetErrorCode(ex), ex.Message)), HttpStatusCode.BadRequest)
         };
 
     private record Error(string Code, string Message);
 
-    private record ErrorsResponse(params Error[] Errors);
+    private record ErrorsResponse(HttpStatusCode StatusCode, params Error[] Errors);
 
     private static string GetErrorCode(object exception)
     {

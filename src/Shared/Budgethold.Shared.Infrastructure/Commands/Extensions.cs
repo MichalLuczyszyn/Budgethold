@@ -9,7 +9,12 @@ internal static class Extensions
     public static IServiceCollection AddCommands(this IServiceCollection serviceCollection, IEnumerable<Assembly> assemblies)
     {
         serviceCollection.AddSingleton<ICommandDispatcher, CommandDispatcher>();
+        
         serviceCollection.Scan(x => x.FromAssemblies(assemblies).AddClasses(c => c.AssignableTo(typeof(ICommandHandler<>)))
+            .AsImplementedInterfaces()
+            .WithScopedLifetime());  
+        
+        serviceCollection.Scan(x => x.FromAssemblies(assemblies).AddClasses(c => c.AssignableTo(typeof(ICommandHandler<,>)))
             .AsImplementedInterfaces()
             .WithScopedLifetime());
 

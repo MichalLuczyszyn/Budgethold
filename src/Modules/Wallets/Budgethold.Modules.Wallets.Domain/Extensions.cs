@@ -3,6 +3,8 @@
 [assembly: InternalsVisibleTo("Budgethold.Modules.Wallets.Api")]
 [assembly: InternalsVisibleTo("Budgethold.Modules.Wallets.Application")]
 [assembly: InternalsVisibleTo("Budgethold.Modules.Wallets.Infrastructure")]
+[assembly: InternalsVisibleTo("Budgethold.Modules.Wallets.Integration.Tests")]
+[assembly: InternalsVisibleTo("Budgethold.Modules.Wallets.Unit.Tests")]
 
 namespace Budgethold.Modules.Wallets.Domain;
 

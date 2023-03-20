@@ -6,5 +6,10 @@ using Model;
 
 internal class WalletsReadConfiguration : IEntityTypeConfiguration<WalletReadModel>
 {
-    public void Configure(EntityTypeBuilder<WalletReadModel> builder) => builder.ToTable(Constants.wallets);
+    public void Configure(EntityTypeBuilder<WalletReadModel> builder)
+    {
+        builder.HasKey(q => q.Id);
+        
+        builder.ToTable(Constants.wallets);
+    }
 }
