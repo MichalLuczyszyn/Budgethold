@@ -16,6 +16,7 @@ using Auth;
 using Commands;
 using Contexts;
 using Events;
+using Kernel;
 using Messenger;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
@@ -85,6 +86,7 @@ internal static class Extensions
         serviceCollection.AddTransient(sp => sp.GetRequiredService<IContextFactory>().Create());
         serviceCollection.AddEvents(assemblies);
         serviceCollection.AddCommands(assemblies);
+        serviceCollection.AddDomainEventDispatcher(assemblies);
         serviceCollection.AddQueries(assemblies);
         serviceCollection.AddModuleRequest(assemblies);
         serviceCollection.AddAuth(modules);

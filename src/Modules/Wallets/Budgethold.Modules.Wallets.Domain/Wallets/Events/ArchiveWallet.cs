@@ -4,4 +4,4 @@ using Entities;
 using Shared.Abstractions.Events;
 using Shared.Abstractions.Kernel;
 
-internal record WalletArchived(Wallet Wallet) : IDomainEvent;
+internal record ArchiveWallet(Wallet Wallet) : IDomainEvent;

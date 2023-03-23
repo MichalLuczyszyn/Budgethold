@@ -3,6 +3,7 @@
 using System.Net;
 using System.Text;
 using System.Text.Json;
+using Common;
 using Core.Commands.Wallets.Create;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -11,19 +12,15 @@ using Xunit;
 public class CreateWalletTests : IClassFixture<WalletsTests>
 {
     private readonly HttpClient _client;
-    private const string Uri = "http://localhost/wallets-module/Wallets";
 
-    public CreateWalletTests(WalletsTests client)
-    {
-        _client = client.CreateClient(new WebApplicationFactoryClientOptions());
-    }
+    public CreateWalletTests(WalletsTests client) => _client = client.CreateClient(new WebApplicationFactoryClientOptions());
 
     [Fact]
     public async Task GIVEN_Valid_Wallet_Name_SHOULD_Return_Success()
     {
-        var requestContent = new StringContent(JsonSerializer.Serialize(new CreateWallet(Faker.Name.First())),
+        var requestContent = new StringContent(JsonSerializer.Serialize(new CreateWallet(WalletFactory.FakerName)),
             Encoding.UTF8, "application/json");
-        var request = new HttpRequestMessage(HttpMethod.Post, Uri);
+        var request = new HttpRequestMessage(HttpMethod.Post, WalletFactory.Uri);
         request.Content = requestContent;
 
         var response = await _client.SendAsync(request);
@@ -36,7 +33,7 @@ public class CreateWalletTests : IClassFixture<WalletsTests>
         var emptyString = "";
         var requestContent =
             new StringContent(JsonSerializer.Serialize(new CreateWallet(emptyString)), Encoding.UTF8, "application/json");
-        var request = new HttpRequestMessage(HttpMethod.Post, Uri);
+        var request = new HttpRequestMessage(HttpMethod.Post, WalletFactory.Uri);
         request.Content = requestContent;
 
         var response = await _client.SendAsync(request);

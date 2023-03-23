@@ -7,8 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Budgethold.Modules.Wallets.Core;
 
+using Services;
+
 internal static class Extensions
 {
     public static IServiceCollection AddApplication(this IServiceCollection serviceCollection)
-        => serviceCollection;
+        => serviceCollection.AddSingleton<IEventMapper, EventMapper>();
 }

@@ -12,12 +12,9 @@ internal class GetWalletHandler : IQueryHandler<GetWallet, GetWalletResponse>
 
     public GetWalletHandler(WalletsReadDbContext dbContext) => _dbContext = dbContext;
 
-    public async Task<GetWalletResponse> HandleAsync(GetWallet query)
+    public async Task<GetWalletResponse?> HandleAsync(GetWallet query)
     {
         var result = await _dbContext.Wallets.Where(x => x.Id == query.Id).Select(x => new GetWalletResponse(x.Id, x.Name, x.WalletType)).FirstOrDefaultAsync();
-
-        if (result is null)
-            throw new WalletNotFoundException();
 
         return result;
     }

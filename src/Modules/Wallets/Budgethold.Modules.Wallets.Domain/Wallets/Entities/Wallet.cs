@@ -66,7 +66,7 @@ internal class Wallet : AggregateRoot<WalletId>
     {
         ArchivedAt = dateTimeOffset;
 
-        AddEvent(new WalletArchived(this));
+        AddEvent(new ArchiveWallet(this));
     }
 
     public static Wallet Create(WalletId id,WalletName name, WalletType walletType)
