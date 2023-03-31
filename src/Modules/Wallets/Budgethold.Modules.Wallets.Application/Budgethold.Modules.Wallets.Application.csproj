@@ -18,6 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Commands\Categories" />
       <Folder Include="Commands\RepeatableTransactions" />
       <Folder Include="Commands\Transactions" />
       <Folder Include="Commands\Wallets" />

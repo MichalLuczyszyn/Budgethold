@@ -1,4 +1,4 @@
-﻿namespace Budgethold.Modules.Categories.Application.Commands.Create;
+﻿namespace Budgethold.Modules.Wallets.Core.Commands.Categories.Create;
 
 using Budgethold.Shared.Abstractions.Commands;
 

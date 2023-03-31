@@ -1,6 +1,7 @@
 ﻿namespace Budgethold.Modules.Wallets.Domain.Wallets.Entities;
 
 using Budgethold.Modules.Wallets.Domain.Transactions.Entities;
+using Categories.Entities;
 using Events;
 using Exceptions;
 using RepeatableTransactions.Entities;
@@ -25,6 +26,7 @@ internal class Wallet : AggregateRoot<WalletId>
     private DateTimeOffset? ArchivedAt { get; set; }
 
     public ICollection<Transaction> Transactions { get; private set; } = new List<Transaction>();
+    public ICollection<Category> Categories { get; private set; } = new List<Category>();
 
     public ICollection<RepeatableTransaction> RepeatableTransactions { get; private set; } =
         new List<RepeatableTransaction>();
@@ -51,7 +53,7 @@ internal class Wallet : AggregateRoot<WalletId>
 
     public void AddTransaction(Transaction transaction, DateOnly date)
     {
-        if (IsArchived) throw new WalletIsArchivedException();
+        GuardAgainstActionOnArchivedWallet();
 
         if (transaction.TransactionType.Value == TransactionType.Future && transaction.Date < date)
             throw new FutureTransactionCannotBePlacedInPastException();
@@ -60,6 +62,24 @@ internal class Wallet : AggregateRoot<WalletId>
             throw new TransactionCannotBePlacedInFutureException();
 
         Transactions.Add(transaction);
+    }
+
+    public void RemoveTransaction(Guid id)
+    {
+        GuardAgainstActionOnArchivedWallet();
+
+        var transaction = Transactions.FirstOrDefault(x => x.Id == id);
+
+        if (transaction is null) throw new TransactionDoesNotExistException();
+
+        Transactions.Remove(transaction);
+    }
+
+    public void AddCategory(Category category)
+    {
+        GuardAgainstActionOnArchivedWallet();
+        
+        Categories.Add(category);
     }
 
     public void Archive(DateTimeOffset dateTimeOffset)
@@ -75,5 +95,10 @@ internal class Wallet : AggregateRoot<WalletId>
 
         wallet.AddEvent(new WalletCreated(wallet));
         return wallet;
+    }
+    
+    private void GuardAgainstActionOnArchivedWallet()
+    {
+        if (IsArchived) throw new WalletIsArchivedException();
     }
 }

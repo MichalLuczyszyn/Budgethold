@@ -17,6 +17,7 @@ using Commands;
 using Contexts;
 using Events;
 using Kernel;
+using Keycloak;
 using Messenger;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
@@ -32,6 +33,7 @@ using Swagger;
 internal static class Extensions
 {
     private const string CorsPolicy = "cors";
+
     public static IServiceCollection AddInfrastructure(this IServiceCollection serviceCollection, IList<Assembly> assemblies, IList<IModule> modules)
     {
         var disabledModules = new List<string>();
@@ -47,11 +49,11 @@ internal static class Extensions
 
                 if (value != null && !bool.Parse(value))
                 {
-                  disabledModules.Add(key.Split(":")[0]);  
+                    disabledModules.Add(key.Split(":")[0]);
                 }
             }
         }
-        
+
         serviceCollection.AddControllers().ConfigureApplicationPartManager(manager =>
         {
             var removedParts = new List<ApplicationPart>();
@@ -64,7 +66,7 @@ internal static class Extensions
             {
                 manager.ApplicationParts.Remove(removedPart);
             }
-            
+
             manager.FeatureProviders.Add(new InternalControllerFeatureProvider());
         });
 
@@ -78,9 +80,8 @@ internal static class Extensions
                     .WithMethods("POST", "PUT", "DELETE")
                     .WithHeaders("Content-Type", "Authorization");
             });
-            
         });
-        
+
         serviceCollection.AddSingleton<IContextFactory, ContextFactory>();
         serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         serviceCollection.AddTransient(sp => sp.GetRequiredService<IContextFactory>().Create());
@@ -92,7 +93,7 @@ internal static class Extensions
         serviceCollection.AddAuth(modules);
         serviceCollection.AddModuleInfo(modules);
         serviceCollection.AddHostedService<AppInitializer>();
-        serviceCollection.AddPostgres ();
+        serviceCollection.AddPostgres();
         serviceCollection.AddMessenger();
         serviceCollection.AddErrorHandling();
         serviceCollection.AddEndpointsApiExplorer();
@@ -107,13 +108,7 @@ internal static class Extensions
         app.UseErrorHandling();
         app.UseSwagger();
         app.UseSwaggerUI();
-        // app.UseReDoc(reDoc =>
-        // {
-        //     reDoc.RoutePrefix = "docs";
-        //     reDoc.SpecUrl("/swagger/v1/swagger.json");
-        //     reDoc.DocumentTitle = "Budgethold API";
-        // });
-        
+
         app.UseHttpsRedirection();
         app.UseAuthentication();
         app.UseRouting();
@@ -138,7 +133,7 @@ internal static class Extensions
 
         return options;
     }
-    
+
     public static string GetModuleName(this object value)
         => value?.GetType().GetModuleName() ?? string.Empty;
 

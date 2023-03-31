@@ -12,7 +12,7 @@ public record ShortText
 
     public ShortText(string value) => Value = value;
 
-    public ShortText(string value, string propertyName)
+    private ShortText(string value, string propertyName)
     {
         if (string.IsNullOrWhiteSpace(value))
             throw new StringValueCannotBeNullOrEmptyException(propertyName);

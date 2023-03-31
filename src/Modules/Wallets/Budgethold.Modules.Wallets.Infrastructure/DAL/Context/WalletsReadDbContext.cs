@@ -1,5 +1,8 @@
 ﻿namespace Budgethold.Modules.Wallets.Infrastructure.DAL.Context;
 
+using Categories.Configurations.Read;
+using Categories.Configurations.Read.Model;
+using Domain.Categories.Entities;
 using Microsoft.EntityFrameworkCore;
 using RepeatableTransactions.Configurations.Read;
 using RepeatableTransactions.Configurations.Read.Model;
@@ -13,6 +16,7 @@ internal class WalletsReadDbContext : DbContext
     public DbSet<WalletReadModel> Wallets { get; set; }
     public DbSet<TransactionReadModel> Transactions { get; set; }
     public DbSet<RepeatableTransactionReadModel> RepeatableTransactions { get; set; }
+    public DbSet<CategoryReadModel> Categories { get; set; }
     public WalletsReadDbContext(DbContextOptions<WalletsReadDbContext> options) : base(options)
     {
     }
@@ -25,5 +29,6 @@ internal class WalletsReadDbContext : DbContext
         modelBuilder.ApplyConfiguration(new WalletsReadConfiguration());
         modelBuilder.ApplyConfiguration(new TransactionsReadConfiguration());
         modelBuilder.ApplyConfiguration(new RepeatableTransactionReadConfiguration());
+        modelBuilder.ApplyConfiguration(new CategoriesReadConfiguration());
     }
 }

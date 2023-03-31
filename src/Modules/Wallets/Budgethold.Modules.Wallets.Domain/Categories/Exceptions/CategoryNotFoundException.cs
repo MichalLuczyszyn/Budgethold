@@ -1,6 +1,6 @@
-﻿namespace Budgethold.Modules.Categories.Core.Exceptions;
+﻿namespace Budgethold.Modules.Wallets.Domain.Categories.Exceptions;
 
-using Shared.Abstractions.Exceptions;
+using Budgethold.Shared.Abstractions.Exceptions;
 
 public class CategoryNotFoundException : BudgetholdException
 {

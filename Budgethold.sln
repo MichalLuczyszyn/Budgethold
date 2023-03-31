@@ -12,13 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{FAFF4CA2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wallets", "Wallets", "{9FC2DABE-F025-4CD5-874C-2120AA1FB477}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Categories", "Categories", "{86E49981-0388-4834-9573-4A6CA32C3756}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Bootstrapper", "src\Bootstrapper\Budgethold.Bootstrapper\Budgethold.Bootstrapper.csproj", "{D9610832-C5AE-4921-AE65-6B80E019942C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Modules.Categories.Api", "src\Modules\Categories\Budgethold.Modules.Categories.Api\Budgethold.Modules.Categories.Api.csproj", "{A0DB0224-9100-4C7C-90AD-661CA9A4DE86}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Modules.Categories.Domain", "src\Modules\Categories\Budgethold.Modules.Categories.Domain\Budgethold.Modules.Categories.Domain.csproj", "{5E4E1FCD-350A-4EC5-A02A-0C9B28080304}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Modules.Wallets.Api", "src\Modules\Wallets\Budgethold.Modules.Wallets.Api\Budgethold.Modules.Wallets.Api.csproj", "{94E8DF54-849F-416D-8B7C-32422A8CE80A}"
 EndProject
@@ -50,10 +44,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Shared.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Modules.Wallets.Integration.Tests", "src\Modules\Wallets\Tests\Budgethold.Modules.Wallets.Integration.Tests\Budgethold.Modules.Wallets.Integration.Tests.csproj", "{7F8774DC-E765-492E-BEB0-BFE986A263E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Modules.Categories.Application", "src\Modules\Categories\Budgethold.Modules.Categories.Application\Budgethold.Modules.Categories.Application.csproj", "{F30163A2-5730-403A-94EC-B6067B49B750}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Budgethold.Modules.Categories.Infrastructure", "src\Modules\Categories\Budgethold.Modules.Categories.Infrastructure\Budgethold.Modules.Categories.Infrastructure.csproj", "{59779374-F880-461B-8A59-3FBF924860E3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,10 +54,7 @@ Global
 		{C70E566F-94EE-4218-A1F9-3DBB802BF41B} = {E2EE4D17-FC8B-4E6D-9015-5B9DDC122C0D}
 		{9E66FB6E-B84A-4A28-8910-EC2F9DE88D12} = {E2EE4D17-FC8B-4E6D-9015-5B9DDC122C0D}
 		{9FC2DABE-F025-4CD5-874C-2120AA1FB477} = {C70E566F-94EE-4218-A1F9-3DBB802BF41B}
-		{86E49981-0388-4834-9573-4A6CA32C3756} = {C70E566F-94EE-4218-A1F9-3DBB802BF41B}
 		{D9610832-C5AE-4921-AE65-6B80E019942C} = {360EC86B-CB73-40AB-BFDC-76F5B99F4C76}
-		{A0DB0224-9100-4C7C-90AD-661CA9A4DE86} = {86E49981-0388-4834-9573-4A6CA32C3756}
-		{5E4E1FCD-350A-4EC5-A02A-0C9B28080304} = {86E49981-0388-4834-9573-4A6CA32C3756}
 		{94E8DF54-849F-416D-8B7C-32422A8CE80A} = {9FC2DABE-F025-4CD5-874C-2120AA1FB477}
 		{01BFF24A-CEEE-4491-BD34-2EB8F7BE8B05} = {9FC2DABE-F025-4CD5-874C-2120AA1FB477}
 		{40044FBA-A791-450C-B083-08CE97720639} = {9E66FB6E-B84A-4A28-8910-EC2F9DE88D12}
@@ -84,22 +71,12 @@ Global
 		{FAFF4CA2-5D75-4E08-BB95-6D8485D8E7D6} = {9E66FB6E-B84A-4A28-8910-EC2F9DE88D12}
 		{A0B1A67B-2973-4CEE-9A96-7C8642BA969A} = {FAFF4CA2-5D75-4E08-BB95-6D8485D8E7D6}
 		{7F8774DC-E765-492E-BEB0-BFE986A263E7} = {3F4965B2-6B89-4311-9C61-D1C776658DCD}
-		{F30163A2-5730-403A-94EC-B6067B49B750} = {86E49981-0388-4834-9573-4A6CA32C3756}
-		{59779374-F880-461B-8A59-3FBF924860E3} = {86E49981-0388-4834-9573-4A6CA32C3756}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D9610832-C5AE-4921-AE65-6B80E019942C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D9610832-C5AE-4921-AE65-6B80E019942C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9610832-C5AE-4921-AE65-6B80E019942C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9610832-C5AE-4921-AE65-6B80E019942C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0DB0224-9100-4C7C-90AD-661CA9A4DE86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0DB0224-9100-4C7C-90AD-661CA9A4DE86}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0DB0224-9100-4C7C-90AD-661CA9A4DE86}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0DB0224-9100-4C7C-90AD-661CA9A4DE86}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5E4E1FCD-350A-4EC5-A02A-0C9B28080304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E4E1FCD-350A-4EC5-A02A-0C9B28080304}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E4E1FCD-350A-4EC5-A02A-0C9B28080304}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E4E1FCD-350A-4EC5-A02A-0C9B28080304}.Release|Any CPU.Build.0 = Release|Any CPU
 		{94E8DF54-849F-416D-8B7C-32422A8CE80A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{94E8DF54-849F-416D-8B7C-32422A8CE80A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94E8DF54-849F-416D-8B7C-32422A8CE80A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -152,13 +129,5 @@ Global
 		{7F8774DC-E765-492E-BEB0-BFE986A263E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F8774DC-E765-492E-BEB0-BFE986A263E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F8774DC-E765-492E-BEB0-BFE986A263E7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F30163A2-5730-403A-94EC-B6067B49B750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F30163A2-5730-403A-94EC-B6067B49B750}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F30163A2-5730-403A-94EC-B6067B49B750}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F30163A2-5730-403A-94EC-B6067B49B750}.Release|Any CPU.Build.0 = Release|Any CPU
-		{59779374-F880-461B-8A59-3FBF924860E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59779374-F880-461B-8A59-3FBF924860E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59779374-F880-461B-8A59-3FBF924860E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59779374-F880-461B-8A59-3FBF924860E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

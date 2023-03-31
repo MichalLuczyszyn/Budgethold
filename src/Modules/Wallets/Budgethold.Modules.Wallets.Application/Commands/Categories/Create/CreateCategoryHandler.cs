@@ -1,10 +1,10 @@
-﻿namespace Budgethold.Modules.Categories.Application.Commands.Create;
+﻿namespace Budgethold.Modules.Wallets.Core.Commands.Categories.Create;
 
-using Core.Entities;
-using Core.Repositories;
-using Shared.Abstractions.Commands;
+using Budgethold.Shared.Abstractions.Commands;
+using Domain.Categories.Entities;
+using Domain.Categories.Repositories;
 
-public class CreateCategoryHandler : ICommandHandler<CreateCategory, CategoryCreatedResponse>
+internal class CreateCategoryHandler : ICommandHandler<CreateCategory, CategoryCreatedResponse>
 {
     private readonly ICategoryRepository _categoryRepository;
 

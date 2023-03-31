@@ -17,6 +17,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="DAL\Categories\Queries" />
       <Folder Include="DAL\RepeatableTransactions\Queries" />
       <Folder Include="DAL\RepeatableTransactions\Repositories" />
       <Folder Include="DAL\Transactions\Queries" />

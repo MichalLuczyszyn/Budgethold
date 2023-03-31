@@ -2,6 +2,8 @@
 
 using Budgethold.Modules.Wallets.Domain.Transactions.Entities;
 using Budgethold.Modules.Wallets.Domain.Wallets.Entities;
+using Categories.Configurations.Write;
+using Domain.Categories.Entities;
 using Domain.RepeatableTransactions.Entities;
 using Microsoft.EntityFrameworkCore;
 using RepeatableTransactions.Configurations.Write;
@@ -18,6 +20,7 @@ internal class WalletsWriteDbContext : DbContext
     public DbSet<Transaction> Transactions { get; set; }
     public DbSet<RepeatableTransaction> RepeatableTransactions { get; set; }
     public DbSet<Wallet> Wallets { get; set; }
+    public DbSet<Category> Categories { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -27,5 +30,6 @@ internal class WalletsWriteDbContext : DbContext
         modelBuilder.ApplyConfiguration(new WalletsWriteConfiguration());
         modelBuilder.ApplyConfiguration(new TransactionsWriteConfiguration());
         modelBuilder.ApplyConfiguration(new RepeatableTransactionWriteConfiguration());
+        modelBuilder.ApplyConfiguration(new CategoriesWriteConfiguration());
     }
 }

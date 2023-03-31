@@ -38,6 +38,12 @@ internal class RepeatableTransactionWriteConfiguration : IEntityTypeConfiguratio
             .WithMany(x => x.RepeatableTransactions)
             .HasForeignKey(x => x.WalletId)
             .OnDelete(DeleteBehavior.NoAction);
+        
+        builder.HasOne(x => x.Category)
+            .WithMany(x => x.RepeatableTransactions)
+            .HasForeignKey(x => x.CategoryId)
+            .OnDelete(DeleteBehavior.NoAction);
+
 
         builder.ToTable(Constants.repeatableTransactions);
     }

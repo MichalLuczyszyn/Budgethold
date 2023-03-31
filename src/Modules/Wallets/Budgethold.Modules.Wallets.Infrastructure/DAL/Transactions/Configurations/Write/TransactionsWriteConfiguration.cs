@@ -51,6 +51,12 @@ internal class TransactionsWriteConfiguration : IEntityTypeConfiguration<Transac
             .HasForeignKey(x => x.RepeatableTransactionId)
             .OnDelete(DeleteBehavior.NoAction);
         
+        builder.HasOne(x => x.Category)
+            .WithMany(x => x.Transactions)
+            .HasForeignKey(x => x.CategoryId)
+            .OnDelete(DeleteBehavior.NoAction);
+
+        
         builder.ToTable(Constants.transactions);
     }
 }

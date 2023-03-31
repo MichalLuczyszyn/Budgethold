@@ -1,9 +1,9 @@
-﻿namespace Budgethold.Modules.Categories.Application.Commands.Update;
+﻿namespace Budgethold.Modules.Wallets.Core.Commands.Categories.Update;
 
-using Core.Repositories;
-using Shared.Abstractions.Commands;
+using Budgethold.Shared.Abstractions.Commands;
+using Domain.Categories.Repositories;
 
-public class UpdateCategoryHandler : ICommandHandler<UpdateCategory>
+internal class UpdateCategoryHandler : ICommandHandler<UpdateCategory>
 {
     private readonly ICategoryRepository _categoryRepository;
 

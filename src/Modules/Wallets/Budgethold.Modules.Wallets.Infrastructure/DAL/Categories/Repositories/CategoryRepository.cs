@@ -1,15 +1,16 @@
-﻿namespace Budgethold.Modules.Categories.Infrastructure.DAL.Repositories;
+﻿namespace Budgethold.Modules.Wallets.Infrastructure.DAL.Categories.Repositories;
 
-using Budgethold.Modules.Categories.Core.Entities;
-using Budgethold.Modules.Categories.Core.Repositories;
+using Context;
+using Domain.Categories.Entities;
+using Domain.Categories.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 internal class CategoryRepository : ICategoryRepository
 {
-    private readonly CategoriesDbContext _dbContext;
+    private readonly WalletsWriteDbContext _dbContext;
     private readonly DbSet<Category> _categories;
 
-    public CategoryRepository(CategoriesDbContext dbContext)
+    public CategoryRepository(WalletsWriteDbContext dbContext)
     {
         _dbContext = dbContext;
         _categories = _dbContext.Categories;

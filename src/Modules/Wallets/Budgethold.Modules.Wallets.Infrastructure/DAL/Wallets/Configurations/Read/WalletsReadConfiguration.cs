@@ -9,6 +9,7 @@ internal class WalletsReadConfiguration : IEntityTypeConfiguration<WalletReadMod
     public void Configure(EntityTypeBuilder<WalletReadModel> builder)
     {
         builder.HasKey(q => q.Id);
+        builder.HasQueryFilter(x => x.ArchivedAt.HasValue);
         
         builder.ToTable(Constants.wallets);
     }

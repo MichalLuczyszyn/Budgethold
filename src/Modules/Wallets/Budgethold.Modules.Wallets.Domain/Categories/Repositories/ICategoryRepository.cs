@@ -1,8 +1,8 @@
-﻿namespace Budgethold.Modules.Categories.Core.Repositories;
+﻿namespace Budgethold.Modules.Wallets.Domain.Categories.Repositories;
 
 using Entities;
 
-public interface ICategoryRepository
+internal interface ICategoryRepository
 {
     Task<Category?> GetAsync(Guid id);
 

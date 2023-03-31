@@ -21,4 +21,8 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Keycloak.AuthServices.Authentication" Version="1.5.1" />
+    </ItemGroup>
+
 </Project>

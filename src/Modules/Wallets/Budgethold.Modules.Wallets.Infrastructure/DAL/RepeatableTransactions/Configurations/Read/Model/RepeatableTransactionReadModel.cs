@@ -1,5 +1,6 @@
 ﻿namespace Budgethold.Modules.Wallets.Infrastructure.DAL.RepeatableTransactions.Configurations.Read.Model;
 
+using Categories.Configurations.Read.Model;
 using Transactions.Configurations.Read.Model;
 using Wallets.Configurations.Read.Model;
 
@@ -16,13 +17,17 @@ internal class RepeatableTransactionReadModel
 
     public DateOnly Date { get; set; }
     public string TransactionType { get; set; }
+    public DateTimeOffset? ArchivedAt { get; set; }
 
-    public Guid WalletId { get; set; }
-
-    public WalletReadModel Wallet { get; set; }
-    
     public DateOnly StartsAt { get; set; }
     public short Interval { get; set; }
     
-    public ICollection<TransactionReadModel> Transactions { get; set; } 
+    
+    public Guid WalletId { get; set; }
+
+    public WalletReadModel Wallet { get; set; }
+        
+    public Guid? CategoryId { get; init; }
+    public CategoryReadModel? Category { get; init; }
+    public ICollection<TransactionReadModel> Transactions { get; set; }
 }
