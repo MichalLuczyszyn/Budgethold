@@ -10,7 +10,7 @@ internal class RepeatableTransactionReadConfiguration : IEntityTypeConfiguration
     {
         builder.HasKey(q => q.Id);
         
-        builder.HasQueryFilter(x => x.ArchivedAt.HasValue);
+        builder.HasQueryFilter(x => !x.ArchivedAt.HasValue);
         
         builder.HasOne(x => x.Wallet)
             .WithMany(x => x.RepeatableTransactions)

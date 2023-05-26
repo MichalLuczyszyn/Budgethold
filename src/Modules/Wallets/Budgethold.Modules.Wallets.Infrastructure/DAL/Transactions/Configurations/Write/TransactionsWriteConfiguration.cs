@@ -12,6 +12,13 @@ internal class TransactionsWriteConfiguration : IEntityTypeConfiguration<Transac
 {
     public void Configure(EntityTypeBuilder<Transaction> builder)
     {
+        builder.HasKey(x => x.Id);
+        
+        builder.Property<DateTimeOffset?>("ArchivedAt");
+        builder.Property<DateTimeOffset>("CreatedAt");
+        
+        builder.HasQueryFilter(x => !EF.Property<DateTimeOffset?>(x, "ArchivedAt").HasValue);
+        
         builder.Property(x => x.Id)
             .IsRequired()
             .HasConversion(x => x.Value, x => new TransactionId(x));

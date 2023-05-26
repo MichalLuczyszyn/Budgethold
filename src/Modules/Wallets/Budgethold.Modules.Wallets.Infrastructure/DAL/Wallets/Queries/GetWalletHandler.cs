@@ -15,7 +15,7 @@ internal class GetWalletHandler : IQueryHandler<GetWallet, GetWalletResponse>
     public async Task<GetWalletResponse?> HandleAsync(GetWallet query)
     {
         var result = await _dbContext.Wallets.Where(x => x.Id == query.Id).Select(x => new GetWalletResponse(x.Id, x.Name, x.WalletType)).FirstOrDefaultAsync();
-
+        
         return result;
     }
 }

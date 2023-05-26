@@ -1,0 +1,16 @@
+﻿@using Budgethold.Frontend.Shared.Wallets.Responses
+
+<div class="ant-col ant-col-xxl-4 ant-col-xl-4 ant-col-md-8 ant-col-sm-12 ant-col-xs-24"  style="background:#fff; padding: 2rem">
+    <Card Bordered="true" >
+        <Body>
+        <Title Level="4">@Model.Name</Title>
+        <Paragraph>@Model.WalletType
+        </Paragraph>
+        </Body>
+    </Card>
+</div>
+
+@code {
+    [Parameter]
+    public GetWalletsResponse Model { get; set; }
+}

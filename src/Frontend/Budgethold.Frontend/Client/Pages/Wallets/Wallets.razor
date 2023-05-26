@@ -1,0 +1,37 @@
+﻿@page "/wallets"
+@attribute [Authorize]
+@using Budgethold.Frontend.Shared.Wallets.Responses
+@using Budgethold.Frontend.Shared.Wallets.Services
+@using Budgethold.Frontend.Shared.Shared.Http
+@inject IWalletsService WalletService
+@inject IApiResponseHandler ApiResponseHandler
+
+<Title Level="3">Wallets</Title>
+
+@if (_loading)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <div class="ant-row">
+        @foreach (var wallet in wallets)
+        {
+            <WalletBrief Model="wallet"></WalletBrief>
+        }
+    </div>
+}
+
+@code {
+    private ICollection<GetWalletsResponse> wallets = new List<GetWalletsResponse>();
+    bool _loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        wallets = await ApiResponseHandler.HandleAsync(WalletService.BrowseAsync());
+        _loading = false;
+    }
+
+}

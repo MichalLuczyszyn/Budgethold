@@ -17,7 +17,10 @@ var logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog(logger);
 
-builder.Services.AddInfrastructure(_assemblies, _modules);
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
+
+builder.Services.AddInfrastructure(_assemblies, _modules, builder);
 foreach (var module in _modules)
 {
     module.Register(builder.Services);
@@ -29,11 +32,29 @@ var app = builder.Build();
 
 app.UseInfrastructure();
 
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseWebAssemblyDebugging();
+}
+else
+{
+    app.UseExceptionHandler("/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+
 foreach (var module in _modules)
 {
     module.Use(app);
 }
 
+app.UseHttpsRedirection();
+
+app.UseBlazorFrameworkFiles();
+app.UseStaticFiles();
+
+app.MapRazorPages();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
@@ -42,6 +63,8 @@ app.UseEndpoints(endpoints =>
 
 _assemblies.Clear();
 _modules.Clear();
+
+app.MapFallbackToFile("index.html");
 
 app.Run();
 

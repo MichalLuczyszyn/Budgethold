@@ -10,13 +10,13 @@ internal class CategoriesReadConfiguration : IEntityTypeConfiguration<CategoryRe
     {
         builder.HasKey(q => q.Id);
 
-        builder.HasQueryFilter(x => x.ArchivedAt.HasValue);
+        builder.HasQueryFilter(x => !x.ArchivedAt.HasValue);
         
         builder.HasOne(x => x.Wallet)
             .WithMany(x => x.Categories)
             .HasForeignKey(x => x.WalletId)
             .OnDelete(DeleteBehavior.NoAction);
 
-        builder.ToTable(Constants.repeatableTransactions);
+        builder.ToTable(Constants.categories);
     }
 }

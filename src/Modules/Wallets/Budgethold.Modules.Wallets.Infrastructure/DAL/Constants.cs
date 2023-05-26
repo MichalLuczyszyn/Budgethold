@@ -3,6 +3,7 @@
 internal static class Constants
 {
     public static readonly string wallets = nameof(wallets);
+    public static readonly string categories = nameof(categories);
     public static readonly string transactions = nameof(transactions);
     public static readonly string repeatableTransactions = nameof(repeatableTransactions);
 }

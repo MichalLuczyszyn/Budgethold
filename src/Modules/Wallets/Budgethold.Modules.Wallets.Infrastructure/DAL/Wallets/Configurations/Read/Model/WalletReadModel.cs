@@ -6,7 +6,6 @@ using Transactions.Configurations.Read.Model;
 
 internal sealed class WalletReadModel
 {
-
     public Guid Id { get; init; }
 
     public string Name { get; init; }

@@ -1,23 +1,37 @@
 ﻿namespace Budgethold.Modules.Wallets.Integration.Tests.Commands.Wallets;
 
 using System.Net;
+using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 using Common;
 using Core.Commands.Wallets.Update;
 using FluentAssertions;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
 using NSubstitute;
 using Xunit;
 
 public class UpdateWalletTests : IClassFixture<WalletsTests>
 {
     private readonly HttpClient _client;
-    private Shared.Abstractions.IClock _calculator = Substitute.For<Shared.Abstractions.IClock>();
+    private readonly Shared.Abstractions.IClock _calculator = Substitute.For<Shared.Abstractions.IClock>();
 
     public UpdateWalletTests(WalletsTests client)
     {
-        _client = client.CreateClient(new WebApplicationFactoryClientOptions());
+        _client = client.WithWebHostBuilder(builder =>
+        {
+            builder.ConfigureTestServices(services =>
+            {
+                services.AddAuthentication("Bearer")
+                    .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>("Auth0", options => { });
+            });
+        }).CreateClient(new WebApplicationFactoryClientOptions() { AllowAutoRedirect = false });
+
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Auth0");
     }
 
     [Fact]

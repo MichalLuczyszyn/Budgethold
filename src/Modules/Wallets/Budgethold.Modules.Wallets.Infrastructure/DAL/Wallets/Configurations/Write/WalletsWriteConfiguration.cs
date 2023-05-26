@@ -10,6 +10,12 @@ internal class WalletsWriteConfiguration : IEntityTypeConfiguration<Wallet>
 {
     public void Configure(EntityTypeBuilder<Wallet> builder)
     {
+        builder.HasKey(x => x.Id);
+        
+        builder.Property<DateTimeOffset?>("ArchivedAt");
+        
+        builder.HasQueryFilter(x => !EF.Property<DateTimeOffset?>(x, "ArchivedAt").HasValue);
+
         builder.Property<WalletId>("Id")
             .IsRequired()
             .HasConversion(x => x.Value, x => new WalletId(x));

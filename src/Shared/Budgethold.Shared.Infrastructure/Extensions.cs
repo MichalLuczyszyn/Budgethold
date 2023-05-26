@@ -12,17 +12,15 @@ namespace Budgethold.Shared.Infrastructure;
 
 using System.Reflection;
 using Abstractions.Modules;
-using Auth;
 using Commands;
 using Contexts;
 using Events;
 using Kernel;
-using Keycloak;
 using Messenger;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
-using Microsoft.OpenApi.Models;
 using Modules;
 using Postgres;
 using Queries;
@@ -34,13 +32,55 @@ internal static class Extensions
 {
     private const string CorsPolicy = "cors";
 
-    public static IServiceCollection AddInfrastructure(this IServiceCollection serviceCollection, IList<Assembly> assemblies, IList<IModule> modules)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection serviceCollection, IList<Assembly> assemblies, IList<IModule> modules, WebApplicationBuilder webApplicationBuilder)
     {
+        serviceCollection.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = "Bearer";
+            options.DefaultChallengeScheme = "Bearer";
+        }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, c =>
+        {
+            c.Authority = webApplicationBuilder.Configuration["Auth0:Authority"];
+            c.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+            {
+                ValidAudiences = new System.Collections.Generic.List<string>()
+                {
+                    webApplicationBuilder.Configuration["Auth0:Audience"]
+                },
+                ValidIssuers = new System.Collections.Generic.List<string>()
+                {
+                    webApplicationBuilder.Configuration["Auth0:Authority"]
+                },
+                ValidateLifetime = true,
+                ClockSkew = TimeSpan.Zero
+            };
+        });
+
+        serviceCollection.AddAuthorization(o =>
+        {
+            o.AddPolicy("wallets:read-write", p => p.
+                RequireAuthenticatedUser().
+                RequireClaim("permissions", "wallets:read-write"));
+            
+            o.AddPolicy("categories:read-write", p => p.
+                RequireAuthenticatedUser().
+                RequireClaim("permissions", "categories:read-write"));
+            
+            o.AddPolicy("repeatabletransactions:read-write", p => p.
+                RequireAuthenticatedUser().
+                RequireClaim("permissions", "repeatabletransactions:read-write"));
+            
+            o.AddPolicy("transactions:read-write", p => p.
+                RequireAuthenticatedUser().
+                RequireClaim("permissions", "transactions:read-write"));
+            
+        });
+        
         var disabledModules = new List<string>();
         using (var service = serviceCollection.BuildServiceProvider())
         {
-            var confifuration = service.GetRequiredService<IConfiguration>();
-            foreach (var (key, value) in confifuration.AsEnumerable())
+            var configuration = service.GetRequiredService<IConfiguration>();
+            foreach (var (key, value) in configuration.AsEnumerable())
             {
                 if (!key.Contains(":module:enabled"))
                 {
@@ -82,6 +122,7 @@ internal static class Extensions
             });
         });
 
+        serviceCollection.AddRouting(options => options.LowercaseUrls = true);
         serviceCollection.AddSingleton<IContextFactory, ContextFactory>();
         serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         serviceCollection.AddTransient(sp => sp.GetRequiredService<IContextFactory>().Create());
@@ -90,7 +131,6 @@ internal static class Extensions
         serviceCollection.AddDomainEventDispatcher(assemblies);
         serviceCollection.AddQueries(assemblies);
         serviceCollection.AddModuleRequest(assemblies);
-        serviceCollection.AddAuth(modules);
         serviceCollection.AddModuleInfo(modules);
         serviceCollection.AddHostedService<AppInitializer>();
         serviceCollection.AddPostgres();
@@ -108,10 +148,9 @@ internal static class Extensions
         app.UseErrorHandling();
         app.UseSwagger();
         app.UseSwaggerUI();
-
-        app.UseHttpsRedirection();
-        app.UseAuthentication();
+        
         app.UseRouting();
+        app.UseAuthentication();
         app.UseSerilogRequestLogging();
         app.UseAuthorization();
 

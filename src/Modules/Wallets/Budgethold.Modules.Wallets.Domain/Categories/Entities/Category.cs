@@ -1,6 +1,7 @@
 ﻿namespace Budgethold.Modules.Wallets.Domain.Categories.Entities;
 
 using RepeatableTransactions.Entities;
+using Shared.Abstractions.Kernel.Types;
 using Shared.Abstractions.Kernel.ValueObjects.Texts;
 using Transactions.Entities;
 using Types;
@@ -28,7 +29,7 @@ internal class Category
     private DateTimeOffset CreatedAt { get; set; }
     private DateTimeOffset? ArchivedAt { get; set; }
     
-    public Guid WalletId { get; private set; }
+    public WalletId WalletId { get; private set; }
     public Wallet Wallet { get; private set; }
     
     public ICollection<RepeatableTransaction> RepeatableTransactions { get; private set; }

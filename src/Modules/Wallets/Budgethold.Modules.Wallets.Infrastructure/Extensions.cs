@@ -6,8 +6,10 @@
 
 namespace Budgethold.Modules.Wallets.Infrastructure;
 
+using DAL.Categories.Repositories;
 using DAL.Context;
 using DAL.Wallets.Repositories;
+using Domain.Categories.Repositories;
 using Domain.Wallets.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Infrastructure.Postgres;
@@ -21,6 +23,7 @@ internal static class Extensions
             .AddPostgres<WalletsWriteDbContext>();
         
         serviceCollection.AddScoped<IWalletRepository, WalletRepository>();
+        serviceCollection.AddScoped<ICategoryRepository, CategoryRepository>();
 
         return serviceCollection;
     }
