@@ -32,6 +32,7 @@ internal class WalletsController : BaseController
     }    
     
     [HttpGet]
+    [AllowAnonymous]
     [ProducesResponseType(200, Type = typeof(ICollection<GetWalletsResponse>))]
     [ProducesResponseType(404)]
     public async Task<ActionResult<ICollection<GetWalletsResponse>>> GetWallets()
