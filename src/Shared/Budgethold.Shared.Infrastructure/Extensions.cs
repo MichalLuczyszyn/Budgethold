@@ -16,6 +16,7 @@ using Amazon;
 using Amazon.Extensions.Configuration.SystemsManager;
 using Amazon.Extensions.NETCore.Setup;
 using Amazon.Runtime;
+using Amazon.Runtime.CredentialManagement;
 using Commands;
 using Contexts;
 using Events;
@@ -25,6 +26,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Modules;
 using Postgres;
 using Queries;
@@ -115,19 +117,21 @@ internal static class Extensions
 
     private static void ConfigureAwsSecretsManager(WebApplicationBuilder webApplicationBuilder)
     {
+        if (webApplicationBuilder.Environment.IsDevelopment()) return;
+        
         var env = webApplicationBuilder.Environment.EnvironmentName.ToLowerInvariant();
-        webApplicationBuilder.Configuration.AddSystemsManager(source =>
-        {
-            source.Path = $"/{env}/budgethold-api";
-            source.ReloadAfter = TimeSpan.FromSeconds(30);
-            source.ParameterProcessor = new DefaultParameterProcessor();
-            source.AwsOptions = new AWSOptions
+        var appName = webApplicationBuilder.Environment.ApplicationName.ToLowerInvariant().Split(".").First();
+
+        webApplicationBuilder.Configuration.AddSecretsManager(region: RegionEndpoint.EUNorth1,
+            configurator: options =>
             {
-                Region = RegionEndpoint.EUNorth1,
-                Credentials = new BasicAWSCredentials(webApplicationBuilder.Configuration["AWS:AccessKeyId"],
-                    webApplicationBuilder.Configuration["AWS:SecretAccessKey"])
-            };
-        });
+                options.SecretFilter = entry => entry.Name.StartsWith($"{env}_{appName}_");
+                options.KeyGenerator = (_, s) => s
+                    .Replace($"{env}_{appName}_", string.Empty)
+                    .Replace("__", ":");
+                options.PollingInterval = TimeSpan.FromMinutes(10);
+            });
+
     }
 
     private static void ConfigureAuthentication(IServiceCollection serviceCollection,

@@ -5,6 +5,7 @@
 [assembly: InternalsVisibleTo("Budgethold.Modules.Wallets.Infrastructure")]
 [assembly: InternalsVisibleTo("Budgethold.Modules.Wallets.Integration.Tests")]
 [assembly: InternalsVisibleTo("Budgethold.Modules.Wallets.Unit.Tests")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 
 namespace Budgethold.Modules.Wallets.Domain;
 
