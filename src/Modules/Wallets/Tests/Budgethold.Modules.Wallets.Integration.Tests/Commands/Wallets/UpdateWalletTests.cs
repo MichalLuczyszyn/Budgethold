@@ -9,10 +9,13 @@ using Common;
 using Core.Commands.Wallets.Update;
 using FluentAssertions;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using NSubstitute;
+using Shared.Tests.Helpers;
 using Xunit;
 
 public class UpdateWalletTests : IClassFixture<WalletsTests>
@@ -22,16 +25,10 @@ public class UpdateWalletTests : IClassFixture<WalletsTests>
 
     public UpdateWalletTests(WalletsTests client)
     {
-        _client = client.WithWebHostBuilder(builder =>
-        {
-            builder.ConfigureTestServices(services =>
-            {
-                services.AddAuthentication("Bearer")
-                    .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>("Auth0", options => { });
-            });
-        }).CreateClient(new WebApplicationFactoryClientOptions() { AllowAutoRedirect = false });
+        _client = client.CreateClient(new WebApplicationFactoryClientOptions() { AllowAutoRedirect = false });
 
-        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Auth0");
+        var accessToken = FakeJwtManager.GenerateJwtToken(new[]{ new Claim("permissions", "wallets:read-write") });
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
     }
 
     [Fact]
